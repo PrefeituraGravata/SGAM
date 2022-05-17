@@ -143,7 +143,7 @@ class ResidentsController extends Action {
         $moradores = Container::getModel('Residents');
 
         // Definindo o nome do arquivo que será exportado
-		$arquivo = 'relacao_moradores.xls';
+		$arquivo = 'relacao_funcionarios.xls';
         
         // Formatando estilo da tabela
         $style_first_header = "height: 60px; font-size:22px; text-align:center; background-color:#1EA39C; color:#FFFFFF; display:table-cell; vertical-align:middle;";
