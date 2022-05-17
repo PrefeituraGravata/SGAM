@@ -20,8 +20,8 @@ create table moradores(
 	nome varchar(60) not null,
 	cpf char(14) not null unique,
 	telefone varchar(20),
-	apartamento varchar(5) not null,
-	bloco char(1) not null
+	apartamento varchar(20) not null,
+	bloco varchar(20) not null
 );
 
 create table prestadores_servicos_cadastrados(
@@ -37,8 +37,8 @@ create table prestadores_servicos(
 	nome varchar(60) not null,
 	cpf_rg varchar(14) not null,
 	uf varchar(2) not null,
-	apartamento varchar(5) not null,
-	bloco char(1) not null,
+	apartamento varchar(20) not null,
+	bloco varchar(100) not null,
 	data_entrada datetime default CURRENT_TIMESTAMP,
 	data_saida datetime,
 	fk_id_prestador_servico int not null,
