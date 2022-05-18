@@ -57,7 +57,7 @@ class ResidentsController extends Action {
             $moradores->apartamento = $_POST['apartamento'];
             $moradores->bloco = $_POST['bloco'];
             $moradores->registerResident();
-            echo "<script>alert('Morador cadastrado com sucesso!')</script>";
+            echo "<script>alert('Funcionário cadastrado com sucesso!')</script>";
         }
         else if(strlen($_POST['cpf']) != 14){
             echo "<script>alert('Digite um CPF válido para realizar o cadastro!')</script>";
