@@ -275,39 +275,6 @@ class Route extends Bootstrap {
 			'action' => 'deleteServiceProviderEntry'
 		);
 
-
-		
-		$routes['leisure_areas'] = array(
-			'route' => '/leisure_areas',
-			'controller' => 'LeisureAreasController',
-			'action' => 'leisureAreas'
-		);
-		$routes['register_event'] = array(
-			'route' => '/register_event',
-			'controller' => 'LeisureAreasController',
-			'action' => 'registerEvent'
-		);
-		$routes['view_event'] = array(
-			'route' => '/view_event',
-			'controller' => 'LeisureAreasController',
-			'action' => 'event'
-		);
-		$routes['update_event'] = array(
-			'route' => '/update_event',
-			'controller' => 'LeisureAreasController',
-			'action' => 'updateEvent'
-		);
-		$routes['delete_event'] = array(
-			'route' => '/delete_event',
-			'controller' => 'LeisureAreasController',
-			'action' => 'deleteEvent'
-		);
-		$routes['confirm_payment'] = array(
-			'route' => '/confirm_payment',
-			'controller' => 'LeisureAreasController',
-			'action' => 'confirmPayment'
-		);
-
 		$this->setRoutes($routes);
 	}
 

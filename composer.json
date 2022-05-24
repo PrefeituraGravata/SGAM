@@ -1,6 +1,6 @@
 {
 	"name": "sistema-controle-acesso/sistema-controle-acesso",
-	"description" : "Sistema WEB de controle de acesso para portaria",
+	"description" : "Sistema WEB de Controle de Acesso para Portaria",
 	"minimum-stability": "stable",
 	"license": "MIT",
 	"require": {
@@ -10,12 +10,12 @@
 		{
 			"name": "Guilherme Avelino de Souza",
 			"email": "guilhermeavelino1@outlook.com",
-			"role": "Delevoper"
+			"role": "Developer"
 		},
 		{
 			"name": "José Alisson Bezerra de Souza",
 			"email": "josealissonbezerra@hotmail.com",
-			"role": "Delevoper"
+			"role": "Developer"
 		}
 	],
 	"autoload": {

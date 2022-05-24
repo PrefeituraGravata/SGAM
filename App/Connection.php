@@ -10,7 +10,7 @@ class Connection {
 			$conn = new \PDO(
 				"mysql:host=localhost;dbname=controle_de_acesso;charset=utf8",
 				"root",
-				"0212",
+				"Mitomito1212",
 				array(\PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8") 
 			);
 
