@@ -48,7 +48,7 @@ create table prestadores_servicos(
 create table visitantes_cadastrados(
 	id_visitante int primary key AUTO_INCREMENT not null,
 	nome varchar(60) not null,
-	cpf char(14) unique not null,
+	cpf char(32) unique not null,
 	rg varchar(14) not null,
 	uf varchar(2) not null
 );
