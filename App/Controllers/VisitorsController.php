@@ -157,7 +157,6 @@ class VisitorsController extends Action {
                     $visitantes->apartamento = $_POST['apartamento'];
                     $visitantes->bloco = $_POST['bloco'];
                     $visitantes->fk_id_visitante = $visitantes->selectDocumentByCpfRgAndUF()['id_visitante'];
-    
                     if($visitantes->getAllVisitorsPresentsForCondition()){ //Verifica se o visitante está com a saída em aberto
                         echo "<script>alert('Esse visitante está presente no condomínio, para realizar o registro de entrada, primeiro é necessário registrar a saída')</script>";
                     }
