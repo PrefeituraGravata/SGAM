@@ -69,20 +69,8 @@ create table visitantes(
 create table encomendas(
 	id_encomenda int primary key AUTO_INCREMENT not null,
 	empresa varchar(60) not null,
-	apartamento varchar(5) not null,
-	bloco char(1) not null,
+	apartamento varchar(20) not null,
+	bloco varchar(30) not null,
 	data_entrega datetime default CURRENT_TIMESTAMP,
     status_entrega varchar(30) not null default 'Processando'
 );
-
-create table eventos (
-    id_evento int primary key AUTO_INCREMENT not null,
-	cpf char(14) not null,
-    titulo_evento varchar(60) not null,
-    inicio_evento datetime not null,
-    fim_evento datetime not null,
-	cor varchar(10) not null,
-	status_pagamento varchar(20) not null default 'Pendente', 
-	fk_id_morador int not null,
-    foreign key(fk_id_morador) references moradores(id_morador) on delete cascade
-)
