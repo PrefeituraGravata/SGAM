@@ -194,10 +194,10 @@
             datasets: [
                 {
                     label: 'Visitantes',
-                    pointBackgroundColor:'#4e73df',
-                    pointBorderColor:'#FFF',
+                    pointBackgroundColor:'rgb(84, 50, 27)',
+                    pointBorderColor:'rgb(84, 50, 27)',
                     pointHitRadius:40,
-                    borderColor:'#4e73df',
+                    borderColor:'rgb(84, 50, 27)',
                     backgroundColor: 'rgba(93, 120, 255,0.0)',
                     data: [
                         <?=$this->view->total_visitantes_por_ano[0]?>,
@@ -216,10 +216,10 @@
                 },
                 {
                     label: 'Prestadores de Serviços',
-                    pointBackgroundColor:'#36b9cc',
-                    pointBorderColor:'#FFF',
+                    pointBackgroundColor:'rgb(201, 129, 26)',
+                    pointBorderColor:'rgb(201, 129, 26)',
                     pointHitRadius:40,
-                    borderColor:'#36b9cc',
+                    borderColor:'rgb(201, 129, 26)',
                     backgroundColor: 'rgba(93, 120, 255,0.0)',
                     data: [
                         <?=$this->view->total_prestadores_servicos_por_ano[0]?>,
@@ -238,10 +238,10 @@
                 },
                 {
                     label: 'Encomendas',
-                    pointBackgroundColor:'#20c9a6',
-                    pointBorderColor:'#FFF',
+                    pointBackgroundColor:'rgb(251, 179, 77)',
+                    pointBorderColor:'rgb(251, 179, 77)',
                     pointHitRadius:40,
-                    borderColor:'#20c9a6',
+                    borderColor:'rgb(251, 179, 77)',
                     backgroundColor: 'rgba(93, 120, 255,0.0)',
                     data: [ 
                         <?=$this->view->total_encomendas_por_ano[0]?>, 
@@ -287,7 +287,7 @@
             datasets: [
                 {
                     label: 'Registro de entrada por mês',
-                    backgroundColor: ['#4e73df', '#36b9cc','#20c9a6'],
+                    backgroundColor: ['rgb(84, 50, 27)', 'rgb(201, 129, 26)','rgb(251, 179, 77)'],
                     data: [
                         <?=$this->view->total_visitantes_por_mes?>, 
                         <?=$this->view->total_prestadores_servicos_por_mes?>, 

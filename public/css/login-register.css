@@ -92,16 +92,16 @@
     -moz-transition: all .3s ease-out;
 }
 .label-float input:focus + label,
-.label-float input:not(:placeholder-shown) + label{
-    font-size: 16px;
-    margin-top: -7px;
-    color: #20B2AA; 
-}
-.label-float input:not(:placeholder-shown){
-    border-bottom: 2px solid #20B2AA!important;
-}
+	.label-float input:not(:placeholder-shown) + label{
+        font-size: 16px;
+        margin-top: -7px;
+        color: #fa9405; 
+		}
+		.label-float input:not(:placeholder-shown){
+                border-bottom: 2px solid #fa9405!important;
+		}
 .btn-register{
-    background: linear-gradient(90deg, rgb(30, 108, 163) 0%, rgb(30, 163, 110) 70%);
+    background: linear-gradient(90deg, rgb(47, 20, 3) 0%, rgb(84, 50, 27) 70%);
     transition: 0.5s;
 }
 .btn-register:active{

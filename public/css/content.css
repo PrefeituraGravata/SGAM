@@ -92,7 +92,7 @@ ul>a:hover{
     background-color:#1f2433;
 }
 ul>a.active{
-    background-color: #20B2AA;
+    background-color: #6a5345;
     color: #ffffff;
 }
 ul>a>div>.icon{
@@ -105,7 +105,7 @@ ul>a>span{
 /* Botão de Exportação dos dados da tabela */
 .breadcrumb>.dropdown-menu>h6{
     padding: 10px 20px !important;
-    color: #20B2AA;
+    color: #313131;
 }
 .btn-exports{
     box-shadow: 0px 0px 0px !important;
@@ -138,13 +138,13 @@ ul>a>span{
     }
 }
 .add{
-    background-color: #20B2AA;
+    background-color: #54321b;
     color: #FFFFFF;
     transition: 0.2s;
     cursor: pointer;
 }
 .add:hover{
-    background-color: rgb(28, 145, 139);
+    background-color: #6a5345;
 }
 .exit{
     background-color: #FFC107;

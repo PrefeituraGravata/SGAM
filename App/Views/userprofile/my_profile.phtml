@@ -34,7 +34,7 @@
         </div>
         <h3 class="text-white text-center mt-2"><?= $_SESSION['nome'] ?></h3>
         <div class="list-group mt-5" id="list-tab" role="tablist">
-            <a class="item-menu-profile pl-3 active" id="list-profile-list" data-toggle="list" href="#list-profile" role="tab" aria-controls="profile">
+            <a class="item-menu-profile pl-3 active" id="list-profile-list" data-toggle="list" href="#list-profile" role="tab" aria-controls="profile" style="background-color:#6a5345!important;">
                 <i class="far fa-id-card pr-2"></i>
                 Informações pessoais
             </a>
@@ -46,7 +46,7 @@
         </div>
         <h3 class="text-white text-center mt-2"><?= $_SESSION['nome'] ?></h3>
         <div class="list-group mt-5" id="list-tab" role="tablist">
-            <a class="item-menu-profile pl-3 active" id="list-profile-list" data-toggle="list" href="#list-profile" role="tab" aria-controls="profile">
+            <a class="item-menu-profile pl-3 active" id="list-profile-list" data-toggle="list" href="#list-profile" role="tab" aria-controls="profile" style="background-color:#6a5345!important;">
                 <i class="far fa-id-card pr-2"></i>
                 Informações pessoais
             </a>
@@ -203,5 +203,28 @@
         if(imagem){
             reader.readAsDataURL(imagem);
         }
+    }
+
+    /*function invalidDayMonthYear() {
+        let inputDate = document.querySelector("input#data_nascimento")
+        const atualDate = {'day':`${date.getDay()}`,'mouth':`${date.getMonth()}`,'year':`${date.getFullYear()}`}
+
+        newDate = inputDate.split("/")
+
+        if(newDate[2] > atualDate['year']){
+            newDate = `${atualDate['day']}/${atualDate['month']}/${atualDate['year']}`
+        } else if(newDate[2] == atualDate['year']) {
+            if(newDate[1] > atualDate['month']){
+                newDate = `${atualDate['day']}/${atualDate['month']}/${atualDate['year']}`
+            } else if(newDate[1] == atualDate['month']) {
+                if(newDate[0] > atualDate['day']){
+                    newDate = `${atualDate['day']}/${atualDate['month']}/${atualDate['year']}`
+                } else{
+                    newDate = `${newDate[0]}/${newDate[1]}/${newDate[2]}`
+                }
+            }
+        }
+
+        return inputDate.innerHTML = newDate*/
     }
 </script>

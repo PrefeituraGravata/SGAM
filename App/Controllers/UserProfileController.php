@@ -37,6 +37,25 @@ class UserProfileController extends Action {
             $msg = 'Nome atualizado com sucesso!';
         }
         else if(isset($_POST['data_nascimento']) && strlen($_POST['data_nascimento']) == 10){
+            //################################################################################
+            $inputDate = $_POST['data_nascimento'];
+            $newDate = explode('/', $inputDate);
+            $todaysstring = date('d/m/Y');
+            $todaysDate = explode('/', $todaysstring);
+            
+            if($newDate[2] > $todaysDate[2]){
+                $inputDate = $todaysstring;
+            } else if($newDate[2] == $todaysDate[2]) {
+                if($newDate[1] > $todaysDate[1]){
+                    $inputDate = $todaysstring;
+                } else if($newDate[1] == $todaysDate[1]) {
+                    if($newDate[0] > $todaysDate[0]){
+                        $inputDate = $todaysstring;
+                    }
+                }
+            }
+            $_POST['data_nascimento'] = $inputDate;
+            //###################################################################################
             $coluna = 'data_nascimento';
             $data_nascimento = str_replace("/", "-", $_POST['data_nascimento']);
             $valor = date('Y-m-d', strtotime($data_nascimento));

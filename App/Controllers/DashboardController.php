@@ -34,7 +34,7 @@ class DashboardController extends Action {
             $this->view->total_encomendas_por_mes = $encomendas->getAllOrdersByMonth()['encomendas_por_mes'];    
             $this->view->total_visitantes_por_mes = $visitantes->getAllVisitorsByMonth()['visitantes_por_mes'];
             $this->view->total_prestadores_servicos_por_mes = $prestadores_servicos->getAllServiceProvidersByMonth()['prestadores_servicos_por_mes'];
-           
+
             // Exibindo regsitros por ano
             for($i =0; $i < 12; $i++){          
                 $this->view->total_encomendas_por_ano[$i] =  isset($encomendas->getAllOrdersByYear()[$i]) ? $encomendas->getAllOrdersByYear()[$i] : 0 ;
