@@ -11,7 +11,7 @@ Para rodara aplicação, rode o seguinte comando:
 ```bash
     cd public
 ```
-3°- Executar o seguinte comomando
+3°- Executar o seguinte comando
 ```bash
     php -S localhost:8080
 ```
