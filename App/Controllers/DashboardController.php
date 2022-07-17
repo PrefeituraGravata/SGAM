@@ -45,7 +45,43 @@ class DashboardController extends Action {
             $this->render('dashboard_admin');
         }
         else{
-            $this->render('dashboard_user');
+             
+           //Pegando dados de cada Tabala
+           $visitantes           = Container::getModel('Visitors');
+           $moradores            = Container::getModel('Residents');
+           $prestadores_servicos = Container::getModel('ServiceProviders');
+ 
+ 
+           //Iniciando os Valores de cada um
+          
+           //visitantes
+           $visitantes->data_atual = date('Y-m-d');           
+           $this->view->total_visitantes_por_dia = $visitantes->getAllVisitorsByDay()['visitantes_por_dia'];
+           $this->view->total_visitantes_por_mes = $visitantes->getAllVisitorsByMonth()['visitantes_por_mes'];
+           $this->view->registros_entrada = $visitantes->getAllRegistersEntry();
+           $this->view->visitantes_cadastrados = $visitantes->getAllVisitorsRegisters();
+           $this->view->total_visitantes_presentes = $visitantes->getAllNumberVisitorsPresents()['visitantes_presentes'];
+           $this->view->visitantes_presentes = $visitantes->getAllVisitorsPresents();           
+           for($i =0; $i < 12; $i++){         
+             
+               $this->view->total_visitantes_por_ano[$i] = isset($visitantes->getAllVisitorsByYear()[$i]) ? $visitantes->getAllVisitorsByYear()[$i] : 0;
+              
+           }
+          
+           //moradores
+           $this->view->moradores = $moradores->getAllResidentsRegisters();
+ 
+           //prestadores de serviço
+           $this->view->registros_entrada = $prestadores_servicos->getAllRegistersEntry();
+           $this->view->prestadores_servicos_cadastrados = $prestadores_servicos->getAllServiceProvidersRegisters();
+           $this->view->total_prestadores_servicos_presentes = $prestadores_servicos->getAllNumberServiceProvidersPresents()['prestadores_servicos_presentes'];
+           $this->view->prestadores_servicos_presentes = $prestadores_servicos->getAllServiceProvidersPresents();
+ 
+ 
+ 
+           $this->render('dashboard_user');
+
+
         }  
     }
 

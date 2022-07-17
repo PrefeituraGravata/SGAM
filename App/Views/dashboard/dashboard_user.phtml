@@ -27,6 +27,265 @@
         </a>
     </div>
 </header>
+
+<section class="p-3" id="content">
+  
+    <div class="card mb-4 border-0 shadow">
+       <ul class="nav nav-tabs" id="myTab" role="tablist">
+           <li class="nav-item" role="presentation">
+               <a class="nav-link tabelas active" id="registros-tab" data-toggle="tab" href="#registros" role="tab" aria-controls="registros" aria-selected="true">
+                   Registros <span class="d-sm-inline-block d-none">de entrada</span>
+               </a>
+           </li>
+           <li class="nav-item" role="presentation">
+               <a class="nav-link tabelas" id="Funcionarios-tab" data-toggle="tab" href="#funcionario" role="tab" aria-controls="funcionario" aria-selected="false">
+                   <span class="d-sm-inline-block d-none">Funcionarios</span>
+                   <span class="d-sm-none d-inline-block">Cadastros</span>
+               </a>
+           </li>
+           <li class="nav-item" role="presentation">
+               <a class="nav-link tabelas" id="service-provider-tab" data-toggle="tab" href="#service-provider" role="tab" aria-controls="service-provider" aria-selected="false">
+                   <span class="d-sm-inline-block d-none">Prestadores de Serviço</span>
+                   <span class="d-sm-none d-inline-block">Cadastros</span>
+               </a>
+           </li>
+       </ul>
+ 
+       <div class="card-body table-responsive pt-1 ">
+           <div class="tab-content" id="myTabContent">
+ 
+               <!-- Cada uma dessas div é responsabel por aquelas tabs-->
+               <div class="tab-pane fade show active" id="registros" role="tabpanel" aria-labelledby="registros-tab">
+                   <table class="table-bordered table-hover mb-0 display responsive nowrap" style="width:100%" id="dataTable">
+                       <thead class="text-center card-header text-dark">
+                           <tr>
+                               <th>Nome</th>
+                               <th>CPF / RG</th>
+                               <th>UF</th>
+                               <th>Setor</th>
+                               <th>Anfitrião</th>
+                               <th>Entrada</th>
+                               <th>Saída</th>
+                               <th>Ações</th>
+                           </tr>
+                       </thead>
+                       <tbody class="text-center">
+                           <?php foreach($this->view->registros_entrada as $e){ ?>
+                               <tr>
+                                   <td><?= $e['nome'] ?></td>
+                                   <td><?= $e['cpf_rg'] ?></td>
+                                   <td><?= $e['uf'] ?></td>
+                                   <td><?= $e['apartamento'] ?></td>
+                                   <td><?= $e['bloco'] ?></td>
+                                   <td><?= date('d/m/Y H:i', strtotime($e['data_entrada'])) ?></td>
+                                   <td>
+                                       <?php if (!isset($e['data_saida'])) {
+                                               echo 'Saída em aberto';
+                                           } else {
+                                               echo date('d/m/Y H:i', strtotime($e['data_saida']));
+                                           }
+                                       ?>
+                                   </td>
+                                   <th>
+                                       <?php if (!isset($e['data_saida'])) { ?>
+                                           <form action="/register_exit_visitor" method="post" class="d-inline-block">
+                                               <input type="hidden" name="id_visitante" value="<?= $e['id_visitante'] ?>">
+                                               <abbr title="Registrar saída">
+                                                   <button type="submit" class="btn btn-warning btn-action">
+                                                       <i class="fas fa-door-open text-white"></i>
+                                                   </button>
+                                               </abbr>
+                                           </form>
+                                       <?php } ?>
+                                       <form action="/edit_visitor_entry" method="post" class="d-inline-block">
+                                           <input type="hidden" name="id_visitante" value="<?= $e['id_visitante'] ?>">
+                                           <input type="hidden" name="nome" value="<?= $e['nome'] ?>">
+                                           <input type="hidden" name="cpf_rg" value="<?= $e['cpf_rg'] ?>">
+                                           <input type="hidden" name="uf" value="<?= $e['uf'] ?>">
+                                           <input type="hidden" name="apartamento" value="<?= $e['apartamento'] ?>">
+                                           <input type="hidden" name="bloco" value="<?= $e['bloco'] ?>">
+                                           <abbr title="Editar registro">
+                                               <button type="submit" class="btn btn-info btn-action">
+                                                   <i class="fas fa-edit"></i>
+                                               </button>
+                                           </abbr>
+                                       </form>
+                                       <form action="/remove_visitor_entry" method="post" class="d-inline-block">
+                                           <input type="hidden" name="id_visitante" value="<?= $e['id_visitante'] ?>">
+                                           <input type="hidden" name="nome" value="<?= $e['nome'] ?>">
+                                           <input type="hidden" name="cpf_rg" value="<?= $e['cpf_rg'] ?>">
+                                           <input type="hidden" name="uf" value="<?= $e['uf'] ?>">
+                                           <input type="hidden" name="apartamento" value="<?= $e['apartamento'] ?>">
+                                           <input type="hidden" name="bloco" value="<?= $e['bloco'] ?>">
+                                           <input type="hidden" name="data_entrada" value="<?= $e['data_entrada'] ?>">
+                                           <input type="hidden" name="data_saida" value="<?= $e['data_saida'] ?>">
+                                           <abbr title="Excluir registro">
+                                               <button type="submit" class="btn btn-danger btn-action">
+                                                   <i class="fas fa-trash-alt"></i>
+                                               </button>
+                                           </abbr>
+                                       </form>
+                                   </th>
+                               </tr>
+                           <?php } ?>
+                       </tbody>
+                   </table>
+               </div>
+ 
+               <div class="tab-pane fade" id="funcionario" role="tabpanel" aria-labelledby="funcionario-tab">
+                   <table class="table-bordered table-hover mb-0 display responsive nowrap" style="width:100%" id="dataTable">
+                           <thead class="text-center card-header text-dark">
+                               <tr>
+                                   <th>Nome</th>
+                                   <th>CPF</th>
+                                   <th>Telefone</th>
+                                   <th>Setor</th>
+                                   <th>Cargo</th>
+                                   <th>Ações</th>
+                               </tr>
+                           </thead>
+                           <tbody class="text-center">
+                               <?php foreach ($this->view->moradores as $e) { ?>
+                                   <tr>
+                                       <td><?= $e['nome'] ?></td>
+                                       <td><?= $e['cpf'] ?></td>
+                                       <td>
+                                           <?php if ($e['telefone'] != "") {
+                                               echo $e['telefone'];
+                                           } else {
+                                               echo "(xx) xxxx-xxxxx";
+                                           }
+                                           ?>
+                                       </td>
+                                       <td><?= $e['apartamento'] ?></td>
+                                       <td><?= $e['bloco'] ?></td>
+                                       <th>
+                                           <form action="/edit_resident" method="post" class="d-inline-block">
+                                               <input type="hidden" name="id_morador" value="<?= $e['id_morador'] ?>">
+                                               <input type="hidden" name="nome" value="<?= $e['nome'] ?>">
+                                               <input type="hidden" name="cpf" value="<?= $e['cpf'] ?>">
+                                               <input type="hidden" name="telefone" value="<?= $e['telefone'] ?>">
+                                               <input type="hidden" name="apartamento" value="<?= $e['apartamento'] ?>">
+                                               <input type="hidden" name="bloco" value="<?= $e['bloco'] ?>">
+                                               <abbr title="Editar registro">
+                                                   <button type="submit" class="btn btn-info btn-action">
+                                                       <i class="fas fa-edit"></i>
+                                                   </button>
+                                               </abbr>
+                                           </form>
+                                           <form action="/remove_resident" method="post" class="d-inline-block">
+                                               <input type="hidden" name="id_morador" value="<?= $e['id_morador'] ?>">
+                                               <input type="hidden" name="nome" value="<?= $e['nome'] ?>">
+                                               <input type="hidden" name="cpf" value="<?= $e['cpf'] ?>">
+                                               <input type="hidden" name="telefone" value="<?= $e['telefone'] ?>">
+                                               <input type="hidden" name="apartamento" value="<?= $e['apartamento'] ?>">
+                                               <input type="hidden" name="bloco" value="<?= $e['bloco'] ?>">
+                                               <abbr title="Excluir registro">
+                                                   <button type="submit" class="btn btn-danger btn-action">
+                                                       <i class="fas fa-trash-alt"></i>
+                                                   </button>
+                                               </abbr>
+                                           </form>
+                                       </th>
+                                   </tr>
+                               <?php } ?>
+                           </tbody>
+                   </table>
+               </div>
+ 
+               
+               <div class="tab-pane fade" id="service-provider" role="tabpanel" aria-labelledby="service-provider-tab">   
+              
+              
+                   <table class="table-bordered table-hover mb-0 display responsive nowrap" style="width:100%" id="dataTable" role="tabpanel" aria-labelledby="dataTable-tab">
+                           <thead class="text-center card-header text-dark">
+                               <tr>
+                                   <th>Nome</th>
+                                   <th>CPF / RG</th>
+                                   <th>UF</th>
+                                   <th>Setor</th>
+                                   <th>Anfitrião</th>
+                                   <th>Entrada</th>
+                                   <th>Saída</th>
+                                   <th>Ações</th>
+                               </tr>
+                           </thead>
+                           <tbody class="text-center">
+                               <?php foreach ($this->view->registros_entrada  as $e) { ?>
+                                   <tr>
+                                       <td><?= $e['nome'] ?></td>
+                                       <td><?= $e['cpf_rg'] ?></td>
+                                       <td><?= $e['uf'] ?></td>
+                                       <td><?= $e['apartamento'] ?></td>
+                                       <td><?= $e['bloco'] ?></td>
+                                       <td><?= date('d/m/Y H:i', strtotime($e['data_entrada'])) ?></td>
+                                       <td>
+                                           <?php if (!isset($e['data_saida'])) {
+                                               echo 'Saída em aberto';
+                                           } else {
+                                               echo date('d/m/Y H:i', strtotime($e['data_saida']));
+                                           }
+                                           ?>
+                                       </td>
+                                       <th>
+                                           <?php if (!isset($e['data_saida'])) { ?>
+                                               <form action="/register_exit_service_provider" method="post" class="d-inline-block">
+                                                   <input type="hidden" name="id_prestador_servico" value="<?= $e['id_prestador_servico'] ?>">
+                                                   <abbr title="Registrar saída">
+                                                       <button type="submit" class="btn btn-warning btn-action">
+                                                           <i class="fas fa-door-open text-white"></i>
+                                                       </button>
+                                                   </abbr>
+                                               </form>
+                                           <?php } ?>
+                                           <form action="/edit_service_provider_entry" method="post" class="d-inline-block">
+                                               <input type="hidden" name="id_prestador_servico" value="<?= $e['id_prestador_servico'] ?>">
+                                               <input type="hidden" name="nome" value="<?= $e['nome'] ?>">
+                                               <input type="hidden" name="cpf_rg" value="<?= $e['cpf_rg'] ?>">
+                                               <input type="hidden" name="uf" value="<?= $e['uf'] ?>">
+                                               <input type="hidden" name="apartamento" value="<?= $e['apartamento'] ?>">
+                                               <input type="hidden" name="bloco" value="<?= $e['bloco'] ?>">
+                                               <abbr title="Editar registro">
+                                                   <button type="submit" class="btn btn-info btn-action">
+                                                       <i class="fas fa-edit"></i>
+                                                   </button>
+                                               </abbr>
+                                           </form>
+                                           <form action="/remove_service_provider_entry" method="post" class="d-inline-block">
+                                               <input type="hidden" name="id_prestador_servico" value="<?= $e['id_prestador_servico'] ?>">
+                                               <input type="hidden" name="nome" value="<?= $e['nome'] ?>">
+                                               <input type="hidden" name="cpf_rg" value="<?= $e['cpf_rg'] ?>">
+                                               <input type="hidden" name="uf" value="<?= $e['uf'] ?>">
+                                               <input type="hidden" name="apartamento" value="<?= $e['apartamento'] ?>">
+                                               <input type="hidden" name="bloco" value="<?= $e['bloco'] ?>">
+                                               <input type="hidden" name="data_entrada" value="<?= $e['data_entrada'] ?>">
+                                               <input type="hidden" name="data_saida" value="<?= $e['data_saida'] ?>">
+                                               <abbr title="Excluir registro">
+                                                   <button type="submit" class="btn btn-danger btn-action">
+                                                       <i class="fas fa-trash-alt"></i>
+                                                   </button>
+                                               </abbr>
+                                           </form>
+                                       </th>
+                                   </tr>
+                               <?php } ?>
+                           </tbody>
+                       </table>
+ 
+              
+             
+               </div>
+ 
+           </div>
+       </div>
+   </div>
+</section>
+
+
+
+
+<!--
+
 <div class="container-fluid">
     <div class="row dashboard-gradient">
         <a href="/visitors" class="col-md-6 bg-1 text-center">
@@ -45,3 +304,5 @@
         </a>
     </div>
 </div>
+
+-->
