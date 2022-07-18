@@ -167,8 +167,29 @@
                    </table>
                </div>
  
-                <!-- Funcionario -->                          
+                <!-- Funcionario --> 
                <div class="tab-pane fade" id="funcionario" role="tabpanel" aria-labelledby="funcionario-tab">
+ 
+                   <ol class="breadcrumb mb-4 bg-dark justify-content-between">
+                       <li class="breadcrumb-item active text-light">
+                           <h4 class="m-0"><i class="fas fa-building mr-3 ml-2" style="font-size:28px"></i>Funcionários</h4>
+                       </li>
+                       <button class="btn bg-transparent btn-exports px-3" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                           <i class="fas fa-ellipsis-v text-white"></i>
+                       </button>
+                       <div class="dropdown-menu drop p-0" aria-labelledby="dropdownMenuButton">
+                           <h6 class="p-2">Exportar</h6>
+                           <a href="/export_residents" class="px-2">
+                               <i class="far fa-file-excel"></i>
+                               <span class="ml-1">Para Excel</span>
+                           </a>
+                       </div>
+                   </ol>  
+ 
+                   <div class="card-header text-center add" data-toggle="modal" data-target="#form-modal-funcionario">
+                       <h5 class="m-0"><i class="fas fa-user mr-1"></i>Cadastrar Funcionário</h5>
+                   </div>
+                                       
                    <table class="table-bordered table-hover mb-0 display responsive nowrap" style="width:100%" id="dataTable">
                            <thead class="text-center card-header text-dark">
                                <tr>
@@ -232,7 +253,40 @@
                <!-- Service Provider -->
                <div class="tab-pane fade" id="service-provider" role="tabpanel" aria-labelledby="service-provider-tab">   
               
-              
+                   <ol class="breadcrumb mb-4 bg-dark justify-content-between">
+                       <li class="breadcrumb-item active">
+                           <button class="btn btn-outline-light" data-toggle="modal" data-target="#cad-modal-pretador-servico">
+                               <h4 class="m-0 d-sm-block d-none"><i class="fas fa-toolbox mr-3 ml-2" style="font-size:28px"></i>Cadastar Prestador de Serviço</h4>
+                               <h4 class="m-0 d-sm-none d-block"><i class="fas fa-toolbox mr-3 ml-2" style="font-size:28px"></i>Cadastar</h4>
+                           </button>
+                       </li>
+                       <button class="btn bg-transparent btn-exports px-3" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                           <i class="fas fa-ellipsis-v text-white"></i>
+                       </button>
+                       <div class="dropdown-menu drop p-0" aria-labelledby="dropdownMenuButton">
+                           <h6 class="p-2">Exportar</h6>
+                           <a type="button" data-toggle="modal" data-target="#export-modal-pretador-servico">
+                               <i class="far fa-file-excel"></i>
+                               <span class="ml-1">Para Excel</span>
+                           </a>
+                       </div>
+                   </ol>
+ 
+                   <div class="row justify-content-between add-exit">
+                       <div class="card-header text-center add col-md-6" data-toggle="modal" data-target="#form-modal-pretador-servico">
+                           <h5 class="m-0"><i class="fas fa-door-open text-white mr-1"></i>Registrar Entrada</h5>
+                       </div>
+                       <div class="card-header text-center exit col-md-6" data-toggle="modal" data-target="#view-modal-pretador-servico">
+                           <h5 class="m-0">
+                               <i class="fas fa-door-open text-white mr-1"></i>
+                               Registrar Saída
+                               <?php if ($this->view->total_prestadores_servicos_presentes) { ?>
+                                   <span class="badge badge-pill badge-danger" title="Total de prestadores de serviço presentes no condomínio"><?= $this->view->total_prestadores_servicos_presentes ?></span>
+                               <?php } ?>
+                           </h5>
+                       </div>
+                   </div>
+ 
                    <table class="table-bordered table-hover mb-0 display responsive nowrap" style="width:100%" id="dataTable" role="tabpanel" aria-labelledby="dataTable-tab">
                            <thead class="text-center card-header text-dark">
                                <tr>
@@ -306,10 +360,9 @@
                                    </tr>
                                <?php } ?>
                            </tbody>
-                       </table>
+                   </table>
  
-              
-             
+                     
                </div>
  
            </div>
@@ -570,30 +623,300 @@
        </div>
    </div>
  
+<!-- Moda de Funcionario -->
+   <!-- Modal de cadastro funcionario-->
+   <div class="modal fade " id="form-modal-funcionario" tabindex="-1" role="dialog" aria-labelledby="title" aria-hidden="true">
+       <div class="modal-dialog modal-dialog-centered" role="document">
+           <div class="modal-content border-0">
+               <div class="modal-header text-center align-items-center">
+                   <h4 class="modal-title font-weight-bold text-secondary">Cadastrar Funcionário</h4>
+                   <button type="button" class="close border-0" data-dismiss="modal" aria-label="Close">
+                       <span aria-hidden="true">&times;</span>
+                   </button>
+               </div>
+               <form action="register_resident" method="post">
+                   <div class="modal-body py-4">
+                       <div class="card card-body border-0 pt-0">
+                           <div class="label-float">
+                               <input type="text" name="nome" class="form-custom form-control mt-2" size="60" placeholder="Nome" maxlength="60" required>
+                               <label>Nome</label>
+                           </div>
+                           <div class="label-float mt-4" id="input-cpf-cadastro">
+                               <input type="text" id="cpf" name="cpf" class="form-custom form-control mt-2" size="60" placeholder="CPF" maxlength="14">
+                               <label>CPF</label>
+                               <div class="invalid-feedback" id="invalid">
+                                   CPF inválido!
+                               </div>
+                           </div>
+                           <div class="label-float mt-4">
+                               <input type="text" name="telefone" id="telefone" class="form-custom form-control mt-2" size="60" placeholder="telefone" maxlength="20">
+                               <label>Telefone</label>
+                           </div>
+                           <div class="label-float mt-4">
+                               <input type="text" name="apartamento" class="form-custom form-control mt-2" size="60" placeholder="Setor" maxlength="20" required>
+                               <label>Setor</label>
+                           </div>
+                           <label class="mt-4 mb-0 text-secondary">Cargo</label>
+                           <select class="form-custom form-control m-0 p-0" name="bloco" style="border-bottom: 2px solid #20B2AA!important;">
+                               <option value="Comissionado">Comissionado</option>
+                               <option value="Efetivo">Efetivo</option>
+                               <option value="Estagiário">Estagiário</option>
+                           </select>
+                       </div>
+                   </div>
+                   <div class="modal-footer">
+                       <button type="submit" class="btn btn-register w-100 text-light" onclick="registerResident()">Cadastrar</button>
+                   </div>
+               </form>
+           </div>
+       </div>
+   </div>
  
+<!-- Moda de Prestador de serviços-->
+   <!-- Modal de cadastro -->
+   <div class="modal fade" id="cad-modal-pretador-servico" tabindex="-1" role="dialog" aria-labelledby="title" aria-hidden="true">
+       <div class="modal-dialog modal-dialog-centered" role="document">
+           <div class="modal-content border-0">
+               <div class="modal-header text-center align-items-center">
+                   <h4 class="modal-title font-weight-bold text-secondary">Cadastrar Prestador de Serviço</h4>
+                   <button type="button" class="close border-0" data-dismiss="modal" aria-label="Close">
+                       <span aria-hidden="true">&times;</span>
+                   </button>
+               </div>
+               <form action="register_service_provider" method="post">
+                   <div class="modal-body py-4">
+                       <div class="card card-body border-0 pt-0">
+                           <div class="label-float">
+                               <input type="text" name="nome" class="form-custom form-control mt-2" size="60" placeholder="Nome" maxlength="60" required>
+                               <label>Nome</label>
+                           </div>
+                           <label class="mt-4 mb-0 text-secondary">Documento</label>
+                           <select id="select-documento-cadastro" name="documento" class="form-custom form-control m-0 p-0" style="border-bottom: 2px solid #fa9405!important;">
+                               <option value="CPF">CPF</option>
+                               <option value="RG">RG</option>
+                           </select>
+                           <div class="label-float mt-4" id="input-cpf-cadastro">
+                               <input type="text" id="cad-cpf" name="cpf" class="form-custom form-control mt-2" size="60" placeholder="CPF" maxlength="14">
+                               <label>CPF</label>
+                               <div class="invalid-feedback" id="cad-invalid">
+                                   CPF inválido!
+                               </div>
+                           </div>
+                           <label id="label-uf-cadastro" class="mt-4 mb-0 text-secondary">UF</label>
+                           <select id="select-uf-cadastro" name="uf" class="form-custom form-control m-0 p-0" style="border-bottom: 2px solid #20B2AA!important;">
+                               <option value="PE">PE</option>
+                               <option value="AC">AC</option>
+                               <option value="AL">AL</option>
+                               <option value="AM">AM</option>
+                               <option value="AP">AP</option>
+                               <option value="BA">BA</option>
+                               <option value="CE">CE</option>
+                               <option value="DF">DF</option>
+                               <option value="ES">ES</option>
+                               <option value="GO">GO</option>
+                               <option value="MA">MA</option>
+                               <option value="MG">MG</option>
+                               <option value="MS">MS</option>
+                               <option value="MT">MT</option>
+                               <option value="PA">PA</option>
+                               <option value="PB">PB</option>
+                               <option value="PI">PI</option>
+                               <option value="PR">PR</option>
+                               <option value="RJ">RJ</option>
+                               <option value="RN">RN</option>
+                               <option value="RO">RO</option>
+                               <option value="RR">RR</option>
+                               <option value="RS">RS</option>
+                               <option value="SC">SC</option>
+                               <option value="SE">SE</option>
+                               <option value="SP">SP</option>
+                               <option value="TO">TO</option>
+                           </select>
+                           <div class="label-float mt-4" id="input-rg-cadastro">
+                               <input type="text" id="cad-rg" name="rg" class="form-custom form-control mt-2" maxlength="14" size="60" placeholder="RG">
+                               <label>RG</label>
+                           </div>
+                       </div>
+                   </div>
+                   <div class="modal-footer">
+                       <button type="submit" id="registrar" class="btn w-100 text-light" onclick="registerServiceProvider()">Cadastrar</button>
+                   </div>
+               </form>
+           </div>
+       </div>
+   </div>
+ 
+   <!-- Modal de registro de entrada-->
+   <div class="modal fade" id="form-modal-pretador-servico" tabindex="-1" role="dialog" aria-labelledby="title" aria-hidden="true">
+       <div class="modal-dialog modal-dialog-centered" role="document">
+           <div class="modal-content border-0">
+               <div class="modal-header text-center align-items-center">
+                   <h4 class="modal-title font-weight-bold text-secondary">Registrar Entrada</h4>
+                   <button type="button" class="close border-0" data-dismiss="modal" aria-label="Close">
+                       <span aria-hidden="true">&times;</span>
+                   </button>
+               </div>
+               <form action="register_entry_service_provider" method="post">
+                   <div class="modal-body py-4">
+                       <div class="card card-body border-0 pt-0">
+                           <label class="mt-0 mb-0 text-secondary">Documento</label>
+                           <select id="select-documento-registro" name="documento" class="form-custom form-control m-0 p-0" style="border-bottom: 2px solid #20B2AA!important;">
+                               <option value="CPF">CPF</option>
+                               <option value="RG">RG</option>
+                           </select>
+                           <div class="label-float mt-4" id="input-cpf-registro">
+                               <input type="text" id="cpf" name="cpf" class="form-custom form-control mt-2" size="60" placeholder="CPF" maxlength="14">
+                               <label>CPF</label>
+                               <div class="invalid-feedback" id="invalid">
+                                   CPF inválido!
+                               </div>
+                           </div>
+                           <label id="label-uf-registro" class="mt-4 mb-0 text-secondary">UF</label>
+                           <select id="select-uf-registro" name="uf" class="form-custom form-control m-0 p-0" style="border-bottom: 2px solid #20B2AA!important;">
+                               <option value="PE">PE</option>
+                               <option value="AC">AC</option>
+                               <option value="AL">AL</option>
+                               <option value="AM">AM</option>
+                               <option value="AP">AP</option>
+                               <option value="BA">BA</option>
+                               <option value="CE">CE</option>
+                               <option value="DF">DF</option>
+                               <option value="ES">ES</option>
+                               <option value="GO">GO</option>
+                               <option value="MA">MA</option>
+                               <option value="MG">MG</option>
+                               <option value="MS">MS</option>
+                               <option value="MT">MT</option>
+                               <option value="PA">PA</option>
+                               <option value="PB">PB</option>
+                               <option value="PI">PI</option>
+                               <option value="PR">PR</option>
+                               <option value="RJ">RJ</option>
+                               <option value="RN">RN</option>
+                               <option value="RO">RO</option>
+                               <option value="RR">RR</option>
+                               <option value="RS">RS</option>
+                               <option value="SC">SC</option>
+                               <option value="SE">SE</option>
+                               <option value="SP">SP</option>
+                               <option value="TO">TO</option>
+                           </select>
+                           <div class="label-float mt-4" id="input-rg-registro">
+                               <input type="text" id="rg" name="rg" class="form-custom form-control mt-2" maxlength="14" size="60" placeholder="RG">
+                               <label>RG</label>
+                           </div>
+                           <div class="label-float mt-4">
+                               <input type="text" name="apartamento" class="form-custom form-control mt-2" size="60" placeholder="Setor" maxlength="5" required>
+                               <label>Setor</label>
+                           </div>
+                           <div class="label-float mt-4">
+                               <input type="text" name="bloco" class="form-custom form-control mt-2" size="60" placeholder="Anfitrião" required>
+                               <label>Anfitrião</label>
+                           </div>
+                       </div>
+                   </div>
+                   <div class="modal-footer">
+                       <button type="submit" class="btn btn-register w-100 text-light" onclick="registerEntry()">Registrar</button>
+                   </div>
+               </form>
+           </div>
+       </div>
+   </div>
+ 
+   <!-- Modal de visualização-->
+   <div class="modal fade" id="view-modal-pretador-servico" tabindex="-1" role="dialog" aria-labelledby="title" aria-hidden="true">
+       <div class="modal-dialog modal-xl modal-dialog-centered">
+           <div class="modal-content border-0">
+               <div class="modal-header text-center align-items-center">
+                   <h4 class="modal-title font-weight-bold text-secondary">Registrar Saída</h4>
+                   <button type="button" class="close border-0" data-dismiss="modal" aria-label="Close">
+                       <span aria-hidden="true">&times;</span>
+                   </button>
+               </div>
+               <div class="card-body table-responsive pt-1">
+                   <table class="display responsive nowrap table-bordered table-hover mb-0" id="dataTableModal" style="width: 100%;">
+                       <thead class="text-center card-header text-dark">
+                           <tr>
+                               <th>Nome</th>
+                               <th>CPF / RG</th>
+                               <th>UF</th>
+                               <th>Setor</th>
+                               <th>Anfitrião</th>
+                               <th>Entrada</th>
+                               <th>Ações</th>
+                           </tr>
+                       </thead>
+                       <tbody class="text-center">
+                           <?php foreach ($this->view->prestadores_servicos_presentes as $e) { ?>
+                               <tr>
+                                   <td><?= $e['nome'] ?></td>
+                                   <td><?= $e['cpf_rg'] ?></td>
+                                   <td><?= $e['uf'] ?></td>
+                                   <td><?= $e['apartamento'] ?></td>
+                                   <td><?= $e['bloco'] ?></td>
+                                   <td><?= date('d/m/Y H:i', strtotime($e['data_entrada'])) ?></td>
+                                   <th>
+                                       <form action="/register_exit_service_provider" method="post" class="d-inline-block">
+                                           <input type="hidden" name="id_prestador_servico" value="<?= $e['id_prestador_servico'] ?>">
+                                           <abbr title="Registrar saída">
+                                               <button type="submit" class="btn btn-warning btn-action text-white w-100">
+                                                   <i class="fas fa-door-open"></i>
+                                                   Registrar Saída
+                                               </button>
+                                           </abbr>
+                                       </form>
+                                   </th>
+                               </tr>
+                           <?php } ?>
+                       </tbody>
+                   </table>
+               </div>
+           </div>
+       </div>
+   </div>
+ 
+   <!-- Modal de exportação-->
+   <div class="modal fade" id="export-modal-pretador-servico" tabindex="-1" role="dialog" aria-labelledby="title" aria-hidden="true">
+       <div class="modal-dialog modal-md modal-dialog-centered">
+           <div class="modal-content border-0">
+               <div class="modal-header text-center align-items-center">
+                   <h4 class="modal-title font-weight-bold text-secondary">Exportação de dados</h4>
+                   <button type="button" class="close border-0" data-dismiss="modal" aria-label="Close">
+                       <span aria-hidden="true">&times;</span>
+                   </button>
+               </div>
+               <form action="/export_service_providers" method="post">
+                   <div class="modal-body py-4">
+                       <div class="card card-body border-0 pt-0">
+                           <label class="mt-2 mb-0 text-secondary">Categoria</label>
+                           <select id="select-documento-export" name="categoria" class="p-0 form-custom form-control m-0 p-0" style="border-bottom: 2px solid #20B2AA!important;">
+                               <option value="Cadastros">Prestadores de serviços cadastrados</option>
+                               <option value="Registros">Registros de entrada</option>
+                           </select>
+ 
+                           <label id="label-periodo-export" class="mt-4 mb-0 text-secondary">Período</label>
+                           <select id="select-periodo-export" name="periodo" class="form-custom form-control m-0 p-0" style="border-bottom: 2px solid #20B2AA!important;">
+                               <option value="Todo o período">Todo o período</option>
+                               <option value="Personalizado">Personalizado</option>
+                           </select>
+ 
+                           <div class="d-flex align-items-center justify-content-between">
+                               <div id="label-data-inicio" class="label-float mt-4 mr-2">
+                                   <input type="date" id="input-data-inicio" name="data-inicio" class="form-custom form-control mt-2" maxlength="10" size="60" placeholder="Data inicial">
+                                   <label>Data inicial</label>
+                               </div>
+                               <div id="label-data-fim" class="label-float mt-4 ml-2">
+                                   <input type="date" id="input-data-fim" name="data-fim" class="form-custom form-control mt-2" maxlength="10" size="60" placeholder="Data final">
+                                   <label>Data final</label>
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+                   <div class="modal-footer">
+                       <button type="submit" class="btn btn-register text-white w-100">Exportar</button>
+                   </div>
+               </form>
+           </div>
+       </div>
+   </div>
 
-
-
-
-<!--
-
-<div class="container-fluid">
-    <div class="row dashboard-gradient">
-        <a href="/visitors" class="col-md-6 bg-1 text-center">
-            <h1 class="text-white"><i class="fas fa-walking px-2"></i>Visitantes</h1>
-        </a>
-        <a href="/service_providers" class="col-md-6 bg-2 text-center">
-            <h1 class="text-white"><i class="fas fa-toolbox px-2"></i>Prestadores de serviços</h1>
-        </a>
-    </div>
-    <div class="row dashboard-gradient">
-        <a href="/orders" class="col-md-6 bg-3 text-center">
-            <h1 class="text-white"><i class="fas fa-dolly px-2"></i>Encomendas</h1>
-        </a>
-        <a href="/residents" class="col-md-6 bg-4 text-center">
-            <h1 class="text-white"><i class="fas fa-building px-2"></i>Funcioário</h1>
-        </a>
-    </div>
-</div>
-
--->
