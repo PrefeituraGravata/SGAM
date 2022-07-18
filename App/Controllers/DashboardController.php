@@ -45,8 +45,8 @@ class DashboardController extends Action {
             $this->render('dashboard_admin');
         }
         else{
-             
-           //Pegando dados de cada Tabala
+                  
+           //Pegando dados de cada Tabela
            $visitantes           = Container::getModel('Visitors');
            $moradores            = Container::getModel('Residents');
            $prestadores_servicos = Container::getModel('ServiceProviders');
@@ -55,10 +55,10 @@ class DashboardController extends Action {
            //Iniciando os Valores de cada um
           
            //visitantes
+           $this->view->registros_entrada_visitantes = $visitantes->getAllRegistersEntry();
            $visitantes->data_atual = date('Y-m-d');           
            $this->view->total_visitantes_por_dia = $visitantes->getAllVisitorsByDay()['visitantes_por_dia'];
            $this->view->total_visitantes_por_mes = $visitantes->getAllVisitorsByMonth()['visitantes_por_mes'];
-           $this->view->registros_entrada = $visitantes->getAllRegistersEntry();
            $this->view->visitantes_cadastrados = $visitantes->getAllVisitorsRegisters();
            $this->view->total_visitantes_presentes = $visitantes->getAllNumberVisitorsPresents()['visitantes_presentes'];
            $this->view->visitantes_presentes = $visitantes->getAllVisitorsPresents();           
@@ -72,7 +72,7 @@ class DashboardController extends Action {
            $this->view->moradores = $moradores->getAllResidentsRegisters();
  
            //prestadores de serviço
-           $this->view->registros_entrada = $prestadores_servicos->getAllRegistersEntry();
+           $this->view->registros_entrada_prestadores_servicos = $prestadores_servicos->getAllRegistersEntry();
            $this->view->prestadores_servicos_cadastrados = $prestadores_servicos->getAllServiceProvidersRegisters();
            $this->view->total_prestadores_servicos_presentes = $prestadores_servicos->getAllNumberServiceProvidersPresents()['prestadores_servicos_presentes'];
            $this->view->prestadores_servicos_presentes = $prestadores_servicos->getAllServiceProvidersPresents();
