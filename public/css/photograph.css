@@ -1,0 +1,136 @@
+/* header */
+
+ul#title{
+    list-style-type: none;
+    display: flex;
+}
+
+li#pmg{
+    padding: 15px 15px 0px 15px;
+}
+
+li#pmg img{
+    border-right: 2px solid black;
+}
+
+li#coor{
+    margin-top: 65px;
+}
+
+nav#menu-base {
+    background-color: rgb( 106, 83, 69);
+    color:white;
+    border-bottom: 8px solid rgb(251, 179, 77);
+}
+
+nav#menu-base ul{
+    padding-left: 40px;
+    margin-bottom: 0px;
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+}
+
+nav#menu-base ul li{
+    padding: 10px;
+    transition: all 0.3s;
+}
+
+nav#menu-base ul li#selecionado{
+    font-weight: bolder;
+    background-color: rgba(251, 179, 77, 0.5);
+    cursor: pointer;
+}
+
+nav#menu-base ul li#site-prefeitura:hover{
+    background-color: rgba(251, 179, 77, 0.5);
+    cursor: pointer;
+}
+
+/* header */
+
+/* section */
+
+section{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+}
+
+section div#imagem{
+    grid-column: 1;
+    grid-row: 1;
+}
+
+video#camera {
+    width:600px;
+    padding: 100px 0px 0px 100px;
+}
+
+canvas#imagem-capturada{
+    width:600px;
+    padding: 100px 0px 0px 100px;
+}
+
+div#infos{
+    grid-column:2;
+    grid-row:1;
+    padding: 100px 0px 0px 100px;
+}
+
+div#infos div{
+    margin-bottom: 10px;
+    display:flex;
+    flex-direction: column;
+}
+
+div#infos div h2{
+    margin: 5px 0px;
+    border-bottom: 5px solid rgb(251, 179, 77);
+    width: 31%;
+    height: 50px;
+}
+
+div#infos form h3 {
+    padding: 5px;
+    font-size: 15pt;
+}
+
+div#infos form input{
+    border:none;
+}
+
+div#infos form textarea{
+    font-size: 15pt;
+    border: none;
+    margin-bottom: 20px;
+    resize:none;
+}
+
+div#botao-capturar {
+    grid-column: 1;
+    grid-row: 2;
+    margin-bottom: 20px;
+}
+
+div#botao-capturar input{
+    margin: 0px 0px 0px 270px;
+    padding: 10px;
+    font-size: 30pt;
+    font-weight: bolder;
+}
+
+/* section */
+
+/* footer */
+
+footer{
+    background-color: rgb( 106, 83, 69);
+    margin:0px 0px -20px 0px;
+    padding: 50px;
+    display: grid;
+    color: white;
+    border-top: 10px solid rgb(251, 179, 77);
+}
+
+/* footer */
