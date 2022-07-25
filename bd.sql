@@ -21,8 +21,26 @@ create table moradores(
 	cpf char(14) not null unique,
 	telefone varchar(20),
 	apartamento varchar(20) not null,
-	bloco varchar(20) not null
+	bloco varchar(20) not null,
+	foto_fk int default 1 not null,
+	foreign key (foto_fk) references foto_moradores(id_foto) on delete cascade
 );
+
+create table foto_moradores(
+	id_foto int primary key AUTO_INCREMENT not null, /* Remover e colocar o nome_foto no lugar*/
+	nome_foto varchar(60) not null,
+	descricao_foto varchar(100) DEFAULT NULL,
+	link_foto varchar(500) not null
+);
+
+INSERT INTO foto_moradores(
+	nome_foto,
+	descricao_foto,
+	link_foto
+	) values (
+	'user.png',
+	null,
+	'/img/users/user.png')
 
 create table prestadores_servicos_cadastrados(
 	id_prestador_servico int primary key AUTO_INCREMENT not null,

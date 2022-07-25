@@ -53,7 +53,10 @@ class Residents extends Model{
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public function updateFK($newFK){
+        $stmt = $this->db->prepare("UPDATE moradores SET foto_fk = :id_foto");
+        $stmt->bindValue(":id_foto", $newFK);
+    }
 }
-
-
 ?>
