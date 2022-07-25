@@ -77,6 +77,11 @@ class DashboardController extends Action {
            $this->view->total_prestadores_servicos_presentes = $prestadores_servicos->getAllNumberServiceProvidersPresents()['prestadores_servicos_presentes'];
            $this->view->prestadores_servicos_presentes = $prestadores_servicos->getAllServiceProvidersPresents();
  
+           //todos
+           $this->view->todos = array();
+           array_push($this->view->todos,$this->view->registros_entrada_prestadores_servicos);
+           array_push($this->view->todos,$this->view->moradores);
+           array_push($this->view->todos,$this->view->registros_entrada_visitantes );
  
  
            $this->render('dashboard_user');
