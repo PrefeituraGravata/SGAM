@@ -72,10 +72,10 @@
     border-radius:0;
 }
 .label-float input:focus{
-    border-bottom: 2px solid #20B2AA;
+    border-bottom: 2px solid #fa9405;
 }
 #registrar{
-    background: linear-gradient(90deg, rgb(30, 108, 163) 0%, rgb(30, 163, 110) 70%);
+    background: linear-gradient(90deg, rgb(47, 20, 3) 0%, rgb(84, 50, 27) 70%);
     transition: 0.5s;
 }
 .label-float input::placeholder{
@@ -105,7 +105,7 @@
     transition: 0.5s;
 }
 .btn-register:active{
-    background: linear-gradient(90deg, rgb(21, 72, 109) 0%, rgb(20, 116, 78) 70%);
+    background: linear-gradient(90deg, rgb(47, 20, 3) 0%, rgb(84, 50, 27) 70%);
 }
 .btn-register:hover{
     box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.603);
