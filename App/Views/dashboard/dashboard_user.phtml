@@ -62,8 +62,8 @@
  
            	<!-- Cada uma dessas div é responsabel por aquelas tabs-->
 
-            <!-- Todos -->
-            <div class="tab-pane fade show active" id="todos" role="tabpanel" aria-labelledby="todos-tab">
+            	<!-- Todos -->
+            	<div class="tab-pane fade show active" id="todos" role="tabpanel" aria-labelledby="todos-tab">
  
                 	<ol class="breadcrumb mb-4 bg-dark justify-content-between">
                     	<li class="breadcrumb-item active text-light">
@@ -80,7 +80,21 @@
                         	</a>
                     	</div>
                 	</ol>  
-                	 
+                 	<!-- Alterando daqui-->
+
+                 	<div class="row justify-content-between add-exit">
+                    	<div class="card-header text-center add col-md-4" data-toggle="modal" data-target="#cad-modal">
+                        	<h5 class="m-0"><i class="fas fa-walking mr-3 ml-2"></i>Cadastar Visitante<h5>
+                    	</div>
+                    	<div class="card-header text-center add col-md-4" data-toggle="modal" data-target="#form-modal-funcionario">
+                        	<h5 class="m-0"><i class="fas fa-user mr-1"></i>Cadastar Funcionario<h5>
+                    	</div>
+                    	<div class="card-header text-center add col-md-4" data-toggle="modal" data-target="#form-modal-pretador-servico">
+                        	<h5 class="m-0"><i class="fas fa-toolbox mr-3 ml-2"></i>Cadastar Prestador de Serviço<h5>
+                    	</div>
+                	</div>
+
+                 	<!-- Até aqui-->
                 	<table class="table-bordered table-hover mb-0 display responsive nowrap" style="width:100%" id="dataTable">
                        	 
                         	<thead class="text-center card-header text-dark">
@@ -325,7 +339,7 @@
                         	</tbody>
                        	 
                 	</table>
-            </div>
+            	</div>
 
            	<!-- Visitantes -->
            	<div class="tab-pane fade show" id="registros" role="tabpanel" aria-labelledby="registros-tab">
@@ -439,10 +453,9 @@
                        	<?php } ?>
                    	</tbody>
                	</table>
-           	</div>
-                                   	 
+           	</div>                                	 
 
-            <!-- Funcionario -->
+            	<!-- Funcionario -->
            	<div class="tab-pane fade" id="funcionario" role="tabpanel" aria-labelledby="funcionario-tab">
  
                	<ol class="breadcrumb mb-4 bg-dark justify-content-between">
@@ -648,8 +661,8 @@
 </section>
  
 <!-- Modais -->
- 
-<!-- Modal de Visitantes -->
+
+	<!-- Modal de Visitantes -->
  
    <!-- Modal de cadastro -->
    <div class="modal fade" id="cad-modal" tabindex="-1" role="dialog" aria-labelledby="title" aria-hidden="true">
