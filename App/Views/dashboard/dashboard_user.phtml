@@ -1199,7 +1199,7 @@
                	<div class="modal-body py-4">
                    	<div class="card card-body border-0 pt-0">
                        	<label class="mt-0 mb-0 text-secondary">Documento</label>
-                       	<select id="select-documento-registro" name="documento" class="form-custom form-control m-0 p-0" style="border-bottom: 2px solid #fa9405!important;">
+                       	<select id="select-documento-registro" name="documento" class="form-custom form-control m-0 p-0" style="border-bottom: 2px solid #fa9405!important;" onchange="selecionarDoc()">
                            	<option value="CPF">CPF</option>
                            	<option value="RG">RG</option>
                        	</select>
@@ -1364,6 +1364,36 @@
  
 <!-- Exibição dos campos RG e CPF de acordo com o documento escolhido -->
 <script>
+	//inializar o prestador de serviço com apenas o cpf amostra   
+   const inputRgRegistro  = document.querySelectorAll("#input-rg-registro")[1];
+   const labelUfRegistro  = document.querySelectorAll("#label-uf-registro")[1];
+   const selectUfRegistro = document.querySelectorAll("#select-uf-registro")[1];
+   inputRgRegistro.hidden = true;
+   labelUfRegistro.hidden = true;
+   selectUfRegistro.hidden = true;
+   //função responsavel para esconder os campos de RG e CPF Obs: necessaria, pois o script logo abaixo só funciona com o prieiro item do cod
+   function selecionarDoc(){
+       const selectDoc        = document.querySelectorAll("#select-documento-registro")[1];
+       const inputRgRegistro  = document.querySelectorAll("#input-rg-registro")[1];
+       const labelUfRegistro  = document.querySelectorAll("#label-uf-registro")[1];
+       const selectUfRegistro = document.querySelectorAll("#select-uf-registro")[1];
+       const inputCpfRegistro = document.querySelectorAll("#input-cpf-registro")[1];
+ 
+       if (selectDoc.value == "RG") {         
+           inputRgRegistro.hidden  = false;
+           labelUfRegistro.hidden  = false;
+           selectUfRegistro.hidden = false;
+           inputCpfRegistro.hidden = true;
+          
+       } else if (selectDoc.value == "CPF") {         
+           inputRgRegistro.hidden  = true;
+           labelUfRegistro.hidden  = true;
+           selectUfRegistro.hidden = true;
+           inputCpfRegistro.hidden = false;
+       }
+   }
+
+
    $('#input-rg-cadastro').hide();
    $('#label-uf-cadastro').hide();
    $('#select-uf-cadastro').hide();
