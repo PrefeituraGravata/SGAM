@@ -6,7 +6,7 @@
         </ul>
         <nav id="menu-base">
             <ul>
-                <li id="site-prefeitura" onclick="goPref()">Home</li>
+                <li id="site-prefeitura" onclick="goPref()">Início</li>
                 <li id="selecionado">Fotografias</li>
             </ul>
         </nav>
@@ -21,10 +21,12 @@
             <div><h2>Informações</h2></div>
             <h3>ID:&nbsp;<?=$_POST['id_photo']?></h3>
             <h3>Nome:&nbsp;<input type="text" size="25" id="nome_photo" name="nome_photo" value="<?=$_POST['nome_photo']?>"></h3>
-            <h3>Descrição:</h3><textarea name="desc_photo" id="desc_photo" rows="7" cols="32"><?=$_POST['desc_photo']?></textarea>
+            <h3>Descrição:</h3><textarea name="desc_photo" id="desc_photo" rows="6" cols="43.8"><?=$_POST['desc_photo']?></textarea>
             <input type="hidden" id='link_photo' name="link_photo" value="">
-            <input onclick="reloadPage()" class="btn btn-warning" type="button" id='tn' value="Tentar Novamente">
-            <input onclick="sendToPHP()" class="btn btn-success" type="button" id='send' value="Enviar" >
+            <div id='botoes'>
+                <input onclick="reloadPage()" class="btn btn-warning" type="hidden" id='tn' value="Tentar Novamente">
+                <input onclick="sendToPHP()" class="btn btn-success" type="hidden" id='send' value="Enviar" >
+            </div>
         </div>
         <div id="botao-capturar">
             <input type="button" value="Capturar" onclick="photograph()" id="capture" class="btn btn-success">
@@ -36,35 +38,29 @@
     <script src="/js/photograph.js"></script>
     <script>
         function sendToPHP(){
+            let idPhotoJSON = {
+                "id_photo" : <?=$_POST['id_photo']?>
+            };
+            let xhr = new XMLHttpRequest();
+            xhr.open("POST", "/delete_in_change", true);
+            xhr.setRequestHeader("Content-type", "application/json");
+            xhr.send(JSON.stringify(idPhotoJSON));
+            
             let nome = document.querySelector('#nome_photo');
-            let valorNome = nome.value;
-
-            if(<?=$_POST['id_photo']?> == 1){
-                if(valorNome == 'user'){
-                    valorNome = <?=$_POST['id_resident_photo']?> + ".png";
-                } else {
-                    valorNome += '.png';
-                }
-                nome.value = valorNome;
-            }
-
             let desc = document.querySelector('#desc_photo');
-
             let link = document.querySelector('#link_photo');
 
             link.value = `/img/residents_photos/`;
 
             const canvasImg = document.querySelector('#imagem-capturada');
-
             let http = new XMLHttpRequest();
-
             let imagem = canvasImg.toDataURL();
-
             let params = {
                 "name_foto": nome.value,
                 "descricao": desc.value,
                 "link_foto": link.value,
-                "image": imagem
+                "image": imagem,
+                "id_morador": <?=$_POST['id_resident_photo']?>
             }
 
             http.open("POST", "/register_photograph", true);
@@ -75,15 +71,11 @@
                 }
             }
 
-            http.send(JSON.stringify(params));//ERRO 500, descobrir o q é e concertar o CSS
+            http.send(JSON.stringify(params));
 
             //daqui pra cima, vai para o servidor
 
             location.href = '/residents'
 
-        }
-
-        function goPref(){
-            location.href = "https://gravata.pe.gov.br/";
         }
     </script>

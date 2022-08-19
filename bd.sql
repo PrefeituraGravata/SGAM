@@ -39,7 +39,7 @@ INSERT INTO foto_moradores(
 	link_foto
 	) values (
 	'user.png',
-	null,
+	'Foto padrão;Altere a imagem!',
 	'/img/users/user.png')
 
 create table prestadores_servicos_cadastrados(

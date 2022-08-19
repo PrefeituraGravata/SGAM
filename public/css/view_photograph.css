@@ -1,0 +1,55 @@
+body {
+    background-color: rgb(26, 26, 26);
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+section#image_data {
+    padding: 2rem 0px;
+    display: grid;
+    color: white;
+    grid-template-columns: 1fr 3fr 3fr 1fr;
+}
+
+#voltar {
+    font-weight: bolder;
+    color: white;
+    background-color: rgba(0,0,0,0);
+    display: block;
+    width: 4.5rem;
+    margin: 1rem;
+    padding:10px;
+    border: 2px solid rgb(51, 51, 51);
+}
+
+#imagem_mostrada{
+    grid-column: 2;
+    text-align: center;
+    margin-top: 1rem;
+}
+
+#imagem_mostrada img {
+    width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#imagem_mostrada figcaption{
+    margin-top: 1rem;
+    transition: all 0.2s;
+}
+
+#imagem_mostrada figcaption:hover{
+    color: gray;
+}
+
+#desc {
+    grid-column: 3;
+    text-align: center;
+}
+
+#desc p{
+    padding-top: 2rem;
+}

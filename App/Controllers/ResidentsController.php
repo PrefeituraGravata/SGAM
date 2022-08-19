@@ -132,6 +132,21 @@ class ResidentsController extends Action {
         if(isset($_POST['id_morador'])){
             $moradores = Container::getModel('Residents');
             $moradores->id_morador = $_POST['id_morador'];
+            $fotografias = Container::getModel('Photographs');
+
+            foreach($moradores->getAllResidentsRegisters() as $e){
+                if($moradores->id_morador == $e["id_morador"]){
+                    $fotografias->id_photo = $e["foto_fk"];
+                }
+            }
+
+            foreach($fotografias->getAllPhotographRegisters() as $p){
+                if($p['id_foto'] == $fotografias->id_photo){
+                    $fotografias->link_photo = $p['link_foto'];
+                    unlink($_SERVER["DOCUMENT_ROOT"].$fotografias->link_photo);
+                }
+            }
+            $fotografias->deletePhotograph();
             $moradores->deleteResident();
             echo "<script>alert('Cadastro excluído com sucesso!')</script>";
         }

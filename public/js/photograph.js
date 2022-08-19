@@ -1,4 +1,6 @@
-navigator.mediaDevices.getUserMedia({video: true})
+navigator.mediaDevices.getUserMedia({
+    video: true
+})
 .then(function (mediaStream) {
     const video = document.querySelector('#camera');
     video.srcObject = mediaStream;
@@ -20,9 +22,17 @@ function photograph(){
     canvas.style.display = "block";
 
     var buttonHidden = document.querySelector('#botao-capturar');
+    var buttonShowTN = document.querySelector('#tn')
+    var buttonShowSe = document.querySelector('#send')
     buttonHidden.style.display = "none";
+    buttonShowTN.setAttribute('type', 'button')
+    buttonShowSe.setAttribute('type', 'button')
 }
 
 function reloadPage(){
     document.location.reload(true);
+}
+
+function goPref(){
+    location.href = "https://gravata.pe.gov.br/";
 }

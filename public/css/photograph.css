@@ -38,12 +38,12 @@ nav#menu-base ul li{
 
 nav#menu-base ul li#selecionado{
     font-weight: bolder;
-    background-color: rgba(251, 179, 77, 0.5);
+    background-color: rgb(70, 41, 0);
     cursor: pointer;
 }
 
 nav#menu-base ul li#site-prefeitura:hover{
-    background-color: rgba(251, 179, 77, 0.5);
+    background-color: rgb(70, 41, 0);
     cursor: pointer;
 }
 
@@ -85,7 +85,7 @@ div#infos div{
 }
 
 div#infos div h2{
-    margin: 5px 0px;
+    margin: 5px 0px 0px 0px;
     border-bottom: 5px solid rgb(251, 179, 77);
     width: 31%;
     height: 50px;
@@ -96,25 +96,49 @@ div#infos form h3 {
     font-size: 15pt;
 }
 
-div#infos form input{
+div#infos input{
     border:none;
 }
 
-div#infos form textarea{
+div#infos textarea{
     font-size: 15pt;
     border: none;
     margin-bottom: 20px;
     resize:none;
 }
 
+div#infos div#botoes{
+    margin-top: 50px!important;
+    margin-left: 80px;
+    width: 300px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    gap: 60px;
+}
+
+div#infos div#botoes input{
+    margin-bottom: 50px;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 15px;
+}
+
+div#infos div#botoes input#tn{
+    grid-column: 1;
+}
+
+div#infos div#botoes input#send{
+    grid-column: 2;
+}
+
 div#botao-capturar {
     grid-column: 1;
     grid-row: 2;
-    margin-bottom: 20px;
 }
 
 div#botao-capturar input{
-    margin: 0px 0px 0px 270px;
+    margin: 20px 0px 20px 270px;
     padding: 10px;
     font-size: 30pt;
     font-weight: bolder;

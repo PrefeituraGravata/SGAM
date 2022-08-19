@@ -1,0 +1,30 @@
+<link rel="stylesheet" href="css/view_photograph.css">
+<button id='voltar' onclick="toResidents()">Voltar</button>
+<section id="image_data">
+    <figure id="imagem_mostrada">
+        <?php if($_POST['id_photo'] == 1){?>
+            <img src="<?=$_POST['link_photo']?>" alt="<?= $_POST['nome_photo']?>" style="width:400px;">
+        <?php }else{?>
+            <img src="<?=$_POST['link_photo']?>" alt="<?= $_POST['nome_photo']?>">
+        <?php }?>
+        <figcaption>
+            <h3>Nome da imagem:<br></h3>
+            <p><?=$_POST['nome_photo']?></p>
+        </figcaption>
+    </figure>
+    <article id="desc">
+        <h3>Descrição: <br></h3>
+        <p>
+            <?php
+            $nop_v = explode(';', $_POST['desc_photo']);
+            
+            echo implode('<br>',$nop_v);
+            ?>
+        </p>
+    </article>
+</section>
+<script>
+    function toResidents(){
+        location.href = '/residents'
+    }
+</script>

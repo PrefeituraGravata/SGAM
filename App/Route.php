@@ -148,7 +148,16 @@ class Route extends Bootstrap {
 			'controller' => 'PhotographController',
 			'action' => 'registerPhotograph'
 		);
-
+		$routes['view_photograph'] = array(
+			'route' => '/view_photograph',
+			'controller' => 'PhotographController',
+			'action' => 'viewPhotograph'
+		);
+		$routes['delete_in_change'] = array(
+			'route' => '/delete_in_change',
+			'controller' => 'PhotographController',
+			'action' => 'deleteInChange'
+		);
 		$routes['visitors'] = array(
 			'route' => '/visitors',
 			'controller' => 'VisitorsController',

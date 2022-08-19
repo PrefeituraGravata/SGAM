@@ -155,14 +155,20 @@
                             </td>
                             <td><?=$e['apartamento']?></td>
                             <td><?=$e['bloco']?></td>
-                            <td><?=$e['foto_fk']?></td>
-                            
+                            <td>
+                                <form action="/view_photograph" method="post">
+                                    <input type="hidden" name="id_photo" value="<?=$e['foto_fk']?>">
+                                    <button type="submit" style="border:none;background-color:rgba(0,0,0,0);color:blue;text-decoration:underline!important;"><?=$e['foto_fk']?></button>
+                                </form>
+                            </td>
                             <th>
                                 <form action="/photograph" method="post" class="d-inline-block">
                                     <input type="hidden" name="id_resident_photo" id="id_resident_photo" value="<?=$e['id_morador']?>">
-                                    <button type="submit" id="go-to-photo" class="btn btn-info btn-warning">
-                                        <i class="fas fa-edit"></i>
-                                    </button>
+                                    <abbr title="Editar foto">
+                                        <button type="submit" id="go-to-photo" style="padding: 10px 13px" class="btn btn-info btn-warning">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                    </abbr>
                                 </form>
                                 <form action="/edit_resident" method="post" class="d-inline-block">          
                                     <input type="hidden" name="id_morador" value="<?=$e['id_morador']?>">
@@ -184,7 +190,7 @@
                                     <input type="hidden" name="telefone" value="<?=$e['telefone']?>">
                                     <input type="hidden" name="apartamento" value="<?=$e['apartamento']?>">
                                     <input type="hidden" name="bloco" value="<?=$e['bloco']?>">
-                                    <input type="hidden" name="foto" value="<?=$e['foto']?>">
+                                    <input type="hidden" name="foto_fk" value="<?=$e['foto_fk']?>">
                                     <abbr title="Excluir registro">
                                         <button type="submit" class="btn btn-danger btn-action">
                                             <i class="fas fa-trash-alt"></i>
@@ -245,11 +251,6 @@
                     <button type="submit" class="btn btn-register w-100 text-light" onclick="return valida()">Cadastrar</button>
                 </div>
             </form>
-            <div class="modal-footer" style="align-itens:center; border:none;padding-top:0px">
-                <form action="photograph" method="post" style="width:100%">
-                    <button type="submit" class="btn btn-register w-100 text-light" name="photograph_button" class="form-custom form-control mt-2">Tirar Foto</button>
-            </div>
         </div>
     </div>
 </div>
-

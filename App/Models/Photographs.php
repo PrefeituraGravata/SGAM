@@ -42,6 +42,12 @@ class Photographs extends Model{
         $stmt->execute();
     }
 
+    public function deletePhotograph(){
+        $stmt = $this->db->prepare("DELETE from foto_moradores where id_foto = :idfoto");
+        $stmt->bindValue(':idfoto', $this->id_photo);
+        $stmt->execute();
+    }
+
     public function getAllPhotographRegisters(){
         $stmt = $this->db->prepare("SELECT * FROM foto_moradores");
         $stmt->execute();
