@@ -142,8 +142,11 @@ class ResidentsController extends Action {
 
             foreach($fotografias->getAllPhotographRegisters() as $p){
                 if($p['id_foto'] == $fotografias->id_photo){
-                    $fotografias->link_photo = $p['link_foto'];
-                    unlink($_SERVER["DOCUMENT_ROOT"].$fotografias->link_photo);
+                    if($p['id_foto'] != 1){
+                        $fotografias->link_photo = $p['link_foto'];
+                        unlink($_SERVER["DOCUMENT_ROOT"].$fotografias->link_photo);
+                    }
+                    
                 }
             }
             $fotografias->deletePhotograph();

@@ -31,7 +31,7 @@
 <div class="container-fluid dashboard-gradient menu-user" id="menu-user" style="margin-left: -100%;">
    <div class="row dashboard-gradient">
        <a href="/dashboard" class="col-md-6 bg-3 text-center">
-           <h1 class="text-white"><i class="fas fa-home px-2"></i>Dashboard</h1>
+           <h1 class="text-white"><i class="fas fa-home px-2"></i>Todos</h1>
        </a>
        <a href="/visitors" class="col-md-6 bg-1 text-center">
            <h1 class="text-white"><i class="fas fa-walking px-2"></i>Visitantes</h1>
@@ -139,6 +139,7 @@
 										<th>Telefone</th>
 										<th>Setor</th>
 										<th>Cargo</th>
+										<th>Foto</th>
 										<th>Anfitrião</th>
 										<th>Entrada</th>
 										<th>Saida</th>
@@ -211,6 +212,19 @@
 												?>
 											</td>
 											<td>
+												<?php 
+													if (isset($e["foto_fk"])){
+														if(!array_key_exists('id_morador', $e)){
+															echo '--';
+														}else{
+															echo '<form action="/view_photograph" method="post"><input type="hidden" name="id_photo" value="'.$e['foto_fk'].'"><button type="submit" style="border:none;background-color:rgba(0,0,0,0);color:blue;text-decoration:underline!important;">'.$e['foto_fk'].'</button></form>';
+														}
+													}else{
+														echo '--';
+													}
+												?>
+											</td>
+											<td>
 												<?php
 													if (isset($e["bloco"])) {
 														if(!array_key_exists('id_morador', $e)){
@@ -252,6 +266,14 @@
 										
 											<th>
 												<?php if(array_key_exists('id_morador', $e)){ ?>
+														<form action="/photograph" method="post" class="d-inline-block">
+                                    						<input type="hidden" name="id_resident_photo" id="id_resident_photo" value="<?=$e['id_morador']?>">
+                                    						<abbr title="Editar foto">
+                                        						<button type="submit" id="go-to-photo" style="padding: 10px 13px" class="btn btn-info btn-warning">
+                                            						<i class="fas fa-edit"></i>
+                                        						</button>
+                                    						</abbr>
+                                						</form>
 														<form action="/edit_resident" method="post" class="d-inline-block">
 															<input type="hidden" name="id_morador" value="<?= $e['id_morador'] ?>">
 															<input type="hidden" name="nome" value="<?= $e['nome'] ?>">
@@ -578,6 +600,7 @@
 										<th>Telefone</th>
 										<th>Setor</th>
 										<th>Cargo</th>
+										<th>Foto</th>
 										<th>Ações</th>
 									</tr>
 								</thead>
@@ -596,7 +619,21 @@
 											</td>
 											<td><?= $e['apartamento'] ?></td>
 											<td><?= $e['bloco'] ?></td>
+											<td>
+												<form action="/view_photograph" method="post">
+													<input type="hidden" name="id_photo" value="<?=$e['foto_fk']?>">
+													<button type="submit" style="border:none;background-color:rgba(0,0,0,0);color:blue;text-decoration:underline!important;"><?=$e['foto_fk']?></button>
+												</form>
+											</td>
 											<th>
+												<form action="/photograph" method="post" class="d-inline-block">
+                                    				<input type="hidden" name="id_resident_photo" id="id_resident_photo" value="<?=$e['id_morador']?>">
+                                    				<abbr title="Editar foto">
+                                        				<button type="submit" id="go-to-photo" style="padding: 10px 13px" class="btn btn-info btn-warning">
+                                            				<i class="fas fa-edit"></i>
+                                        				</button>
+                                    				</abbr>
+                                				</form>
 												<form action="/edit_resident" method="post" class="d-inline-block">
 													<input type="hidden" name="id_morador" value="<?= $e['id_morador'] ?>">
 													<input type="hidden" name="nome" value="<?= $e['nome'] ?>">
@@ -1098,6 +1135,7 @@
                        	<label class="mt-4 mb-0 text-secondary">Cargo</label>
                        	<select class="form-custom form-control m-0 p-0" name="bloco" style="border-bottom: 2px solid #fa9405!important;">
                            	<option value="Comissionado">Comissionado</option>
+							   <option value="Contratado">Contratado</option>
                            	<option value="Efetivo">Efetivo</option>
                            	<option value="Estagiário">Estagiário</option>
                        	</select>

@@ -22,12 +22,13 @@ class Residents extends Model{
     }
 
     public function registerResident(){
-        $stmt = $this->db->prepare("INSERT INTO moradores(nome, cpf, telefone, apartamento, bloco) values(:nome, :cpf, :telefone, :apartamento, :bloco)");
+        $stmt = $this->db->prepare("INSERT INTO moradores(nome, cpf, telefone, apartamento, bloco, foto_fk) values(:nome, :cpf, :telefone, :apartamento, :bloco, :foto)");
         $stmt->bindValue(":nome", $this->nome);
         $stmt->bindValue(":cpf", $this->cpf);
         $stmt->bindValue(":telefone", $this->telefone);
         $stmt->bindValue(":apartamento", $this->apartamento);
         $stmt->bindValue(":bloco", $this->bloco);
+        $stmt->bindValue(":foto", 1);
         $stmt->execute();
     }
 
